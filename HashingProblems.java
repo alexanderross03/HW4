@@ -1,5 +1,5 @@
 /*
- * *** YOUR NAME GOES HERE / YOUR SECTION NUMBER ***
+ * *** Alexander Ross / 001 ***
  *
  * This HashingProblems object contains three methods / problems that you must
  * complete utilize the HashMap object within the Java's Collection Framework Library.
@@ -32,17 +32,18 @@ class HashingProblems {
      */
 
     public double getAverage(HashMap<Integer, Integer> map, int[] array) {
+        int sum = 0;
+        int count = 0;
 
-        /*
-         * ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOU NAME AT TOP OF FILE
-         *
-         * Note: if NO values found in common between the HashMap and supplied array,
-         * returning 0.0 is NOT correct, as that is not the average value. Whereas
-         * returning 0.0/0.0 IS correct (which would return a non-number).
-         */
+        for (int num : array) {
+            if (map.containsKey(num)) {
+                sum += map.get(num);
+                count++;
+            }
+        }
 
-         return 0.0 / 0.0;
-  }
+        return count == 0 ? Double.NaN : (double) sum / count;
+    }
 
 
     /*
@@ -52,19 +53,17 @@ class HashingProblems {
      * values of the corresponding keys that are odd.
      */
 
-  public ArrayList<String> odd(HashMap<Integer, String> map) {
-    
-      ArrayList<String> result = new ArrayList<>();
+    public ArrayList<String> odd(HashMap<Integer, String> map) {
+        ArrayList<String> result = new ArrayList<>();
 
-      /*
-       * ADD YOUR CODE HERE
-       *
-       * Hint: Consider iterating over the HashMap using the keySet method.
-       */
+        for (Integer key : map.keySet()) {
+            if (key % 2 != 0) { // Check if key is odd
+                result.add(map.get(key));
+            }
+        }
 
-
-      return result;
-  }
+        return result;
+    }
 
 
   /*
@@ -104,13 +103,17 @@ class HashingProblems {
    * NOTE: Solving using a HashMap or HashSet is fine (either is okay). HashSet may be easier to code?
    */
 
-  public int twoSums(int[] numbers, int k) {
+    public int twoSums(int[] numbers, int k) {
+        HashSet<Integer> set = new HashSet<>();
+        int count = 0;
 
-      /*
-       * ADD YOUR CODE HERE
-       */
+        for (int num : numbers) {
+            if (set.contains(num - k)) count++;
+            if (set.contains(num + k)) count++;
+            set.add(num);
+        }
 
-      return -1;
-  }
+        return count;
+    }
 
 } /* end class HashingProblems */
